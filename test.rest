@@ -16,7 +16,7 @@ GET http://localhost:3000/news
 GET http://localhost:3000/news/613c8e1a22b2af9b1788a3ca
 
 ###
-PUT http://localhost:3000/news/613c8e1a22b2af9b1788a3ca
+PUT http://localhost:3000/news/613c8e1a22b2af9dfvdfv
 Content-Type: application/json
 
 {
@@ -26,3 +26,63 @@ Content-Type: application/json
     "status": 3,
     "imgUrl": "url sua"
 }
+
+###
+DELETE  http://localhost:3000/news/613c8e1a22b2af9b1788a3ca
+
+
+//Phần event
+###
+POST http://localhost:3000/event
+Content-Type: application/json
+
+{
+    "title": "event 3",
+    "descriptions": "event 3",
+    "content": "event 3",
+    "status": 3,
+    "imgUrl": "event 3",
+    "date": "3/3/3000"
+}
+
+###
+GET http://localhost:3000/event
+
+###
+GET http://localhost:3000/event/613c958bd95e84c58911c163
+
+###
+PUT http://localhost:3000/event/613c958bd95e84c58911c163
+Content-Type: application/json
+
+{
+    "title": "event sua",
+    "descriptions": "event sua",
+    "content": "event sua",
+    "status": 3,
+    "imgUrl": "event 3",
+    "date": "3/3/3000"
+}
+
+###
+DELETE http://localhost:3000/event/613c958bd95e84c58911c163
+
+
+###
+//phần urgent
+POST http://localhost:3000/urgent
+Content-Type: application/json
+
+{
+    "unit": "urgent 2",
+    "bloodType": "urgent 2",
+    "status": 2,
+    "imgUrl": "urgent 2",
+    "reason": "urgent 2"
+}
+
+###
+GET http://localhost:3000/urgent
+###
+GET http://localhost:3000/urgent/613ca2695c318e21cbd44ffe
+  

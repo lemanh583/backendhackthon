@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const NewsSchema = new Schema({
+const UrgentSchema = new Schema({
     unit: {
         type: String,
     },
@@ -19,4 +19,4 @@ const NewsSchema = new Schema({
     },
 },{timestamps: true})
 
-module.exports = mongoose.model('news', NewsSchema)
+module.exports = mongoose.model('urgent', UrgentSchema)

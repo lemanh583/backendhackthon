@@ -1,71 +1,69 @@
-const eventModel = require('../model/event')
-const eventController = {
-    createEvent: async(req, res) => {
+const urgentModel = require('../model/urgent')
+const urgentController = {
+    createUrgent: async(req, res) => {
         try {
             const {
-                title,
-                descriptions,
-                content,
+                unit,
+                bloodType,
                 status,
                 imgUrl,
-                date
+                reason
             }
             = req.body
 
-            const event = new eventModel({
-                title,
-                descriptions,
-                content,
+            const urgent = new urgentModel({
+                unit,
+                bloodType,
                 status,
                 imgUrl,
-                date
+                reason
             })
 
-            await event.save()
+            await urgent.save()
             return res.json({success: true, message: "thêm thành công"})
 
         } catch (error) {
             return res.status(500).json({success: false, message: error.message})
         }
     },
-    getEvent: async (req, res) => {
+    getUrgents: async (req, res) => {
         try {
-            const event = await eventModel.find({})
-            return res.json(event)
+            const urgent = await urgentModel.find({})
+            return res.json(urgent)
         } catch (error) {
             return res.status(500).json({success: false, message: error.message})
         }
     },
-    findEvent: async (req, res) => {
+    findUrgent: async (req, res) => {
         try {
             const id = req.params.id
-            const event = await eventModel.findById(id)
-            if(!event){
+            const urgent = await urgentModel.findById(id)
+            if(!urgent){
                 return res.json({success: false, message: "Không tìm thấy"})
             }
-            return res.json(event)
+            return res.json(urgent)
         } catch (error) {
             return res.status(500).json({success: false, message: error.message})
         }
     },
-    updateEvent: async (req, res) => {
+    updateUrgent: async (req, res) => {
         try {
             const id = req.params.id
             const {
-                title,
-                descriptions,
-                content,
+                unit,
+                bloodType,
                 status,
-                imgUrl
+                imgUrl,
+                reason
             }
             = req.body
-            const news = await eventModel.findByIdAndUpdate(id,
+            const urgent = await urgentModel.findByIdAndUpdate(id,
                 {$set: {
-                    title,
-                    descriptions,
-                    content,
+                    unit,
+                    bloodType,
                     status,
-                    imgUrl
+                    imgUrl,
+                    reason
                 } 
             })
             return res.json({message: "Sửa thành công"})
@@ -73,11 +71,11 @@ const eventController = {
             return res.status(500).json({success: false, message: error.message})
         }
     },
-    deleteEvent: async (req, res) => {
+    deleteUrgent: async (req, res) => {
         try {
             const id = req.params.id
-            const news = await eventModel.findByIdAndDelete(id)
-            if(!news){
+            const urgent = await urgentModel.findByIdAndDelete(id)
+            if(!urgent){
                 return res.json({message: 'Không tìm thấy'})
             }
             return res.json({message: 'Xoá thành công'})
@@ -87,4 +85,4 @@ const eventController = {
     }
 }
 
-module.exports = eventController
+module.exports = urgentController
