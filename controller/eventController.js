@@ -30,8 +30,15 @@ const eventController = {
     },
     getEvent: async (req, res) => {
         try {
-            const event = await eventModel.find({})
-            return res.json(event)
+            if(req.query.limit){
+                const limit = req.query.limit
+                const event = await eventModel.find({}).limit(parseInt(limit))
+                return res.json(event)
+            }else{
+                const event = await eventModel.find({})
+                return res.json(event)
+            }
+          
         } catch (error) {
             return res.status(500).json({success: false, message: error.message})
         }

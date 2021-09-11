@@ -28,8 +28,15 @@ const newController = {
     },
     getNews: async (req, res) => {
         try {
-            const news = await newsModel.find({})
-            return res.json(news)
+            if(req.query.limit){
+                const limit = req.query.limit
+                const news = await newsModel.find({}).limit(parseInt(limit))
+                return res.json(news)
+            }else{
+                const news = await newsModel.find({})
+                return res.json(news)
+            }
+           
         } catch (error) {
             return res.status(500).json({success: false, message: error.message})
         }

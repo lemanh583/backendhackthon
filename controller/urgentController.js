@@ -28,8 +28,17 @@ const urgentController = {
     },
     getUrgents: async (req, res) => {
         try {
-            const urgent = await urgentModel.find({})
-            return res.json(urgent)
+            
+            if(req.query.limit){
+                const limit = req.query.limit
+                const urgent = await urgentModel.find({}).limit(parseInt(limit))
+                return res.json(urgent) 
+            }
+            else{
+                const urgent = await urgentModel.find({})
+                return res.json(urgent)
+            }
+            
         } catch (error) {
             return res.status(500).json({success: false, message: error.message})
         }
